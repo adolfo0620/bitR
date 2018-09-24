@@ -2,7 +2,6 @@ from xmlrpc import client as Client
 import base64
 import json
 import time
-from pprint import pprint
 from django.conf import settings
 
 

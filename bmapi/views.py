@@ -55,7 +55,9 @@ class CreateId( View ):
     def post( self, request ):
         if request.json['identity'] in BitKey.objects.filter(user=request.json['_user']):
                 return JsonResponse( { 'error' : 'You have already created an identity with that name'})
-        newaddy = BMclient.call('createRandomAddress', BMclient._encode(request.json['identity']) )
+        identity = request.json['identity']
+        import pdb; pdb.set_trace()
+        newaddy = BMclient.call('createRandomAddress', BMclient._encode(identity) )
         bitty = BitKey.objects.create(name=request.json['identity'], key=newaddy['data'][0]['address'], user=request.json['_user'])
         return JsonResponse( { 'identity' : bitty.name } )
 
